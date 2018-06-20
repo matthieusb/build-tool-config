@@ -1,5 +1,7 @@
 # build-tool-config
 
+[![Build Status](https://travis-ci.org/matthieusb/build-tool-config.svg?branch=develop)](https://travis-ci.org/matthieusb/build-tool-config)
+
 TODO Add project description
 
 ## Installation 
