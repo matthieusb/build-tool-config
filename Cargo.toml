@@ -1,0 +1,6 @@
+[package]
+name = "build-tool-config"
+version = "0.1.0"
+authors = ["matthieusb <sauboua.beneluz.matthieu@gmail.com>"]
+
+[dependencies]
