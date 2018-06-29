@@ -32,3 +32,11 @@ And then to build continually in separate terminals or launch tests:
 cargo watch
 cargo watch -x test
 ```
+
+## Generating the documentation
+
+To generate and open this project's documentation:
+
+```bash
+cargo doc --open
+```
