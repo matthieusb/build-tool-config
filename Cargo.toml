@@ -5,3 +5,4 @@ authors = ["matthieusb <sauboua.beneluz.matthieu@gmail.com>"]
 
 [dependencies]
 clap = "2.32.0"
+xml-rs = "0.8.0"
