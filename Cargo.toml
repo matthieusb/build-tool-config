@@ -1,5 +1,5 @@
 [package]
-name = "build-tool-config"
+name = "build_tool_config"
 version = "0.1.0"
 authors = ["matthieusb <sauboua.beneluz.matthieu@gmail.com>"]
 
