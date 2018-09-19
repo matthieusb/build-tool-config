@@ -24,60 +24,6 @@ impl Arguments {
     pub fn from_args() -> Arguments { 
         <Arguments as StructOpt>::from_args() 
     }
-
-    // -- Getters
-
-    // BuildToolArguments
-    pub fn get_maven_arg(&self) -> bool {
-        self.build_tool_arguments.get_maven_arg()
-    }
-
-    pub fn get_gradle_arg(&self) -> bool {
-        self.build_tool_arguments.get_gradle_arg()
-    }
-
-    pub fn get_all_build_tools_arg(&self) -> bool {
-        self.build_tool_arguments.get_all_build_tools_arg()
-    }
-
-    // ProxyArguments
-    pub fn get_http_proxy_arg(&self) -> &Option<String> {
-        self.proxy_arguments.get_http_proxy_arg()
-    }
-
-    pub fn get_https_proxy_arg(&self) -> &Option<String> {
-        self.proxy_arguments.get_https_proxy_arg()
-    }
-
-    pub fn get_all_proxy_arg(&self) -> &Option<String> {
-        self.proxy_arguments.get_all_proxy_arg()
-    }
-
-    // RepositoryArguments
-    pub fn get_repository_arg(&self) -> &Option<String> {
-        self.repository_arguments.get_repository_arg()
-    }
-
-    // ManageSettingsArguments
-    pub fn get_unset_settings_arg(&self) -> &Vec<String> {
-        self.manage_settings_arguments.get_unset_settings_arg()
-    }
-
-    pub fn get_save_current_settings_arg(&self) -> &Option<String> {
-        self.manage_settings_arguments.get_save_current_settings_arg()
-    }
-
-    pub fn get_delete_settings_arg(&self) -> &Option<String> {
-        self.manage_settings_arguments.get_delete_settings_arg()
-    }
-
-    pub fn get_restore_settings_arg(&self) -> &Option<String> {
-        self.manage_settings_arguments.get_restore_settings_arg()
-    }
-
-    pub fn get_display_settings_arg(&self) -> &Option<String> {
-        self.manage_settings_arguments.get_display_settings_arg()
-    }
 }
 
 /// The BuildToolArguments type. Represents the "-m"/"--maven" "g"/"--gradle" and "-a"/"--all-tols" arguments.
@@ -99,18 +45,7 @@ pub struct BuildToolArguments {
 }
 
 impl BuildToolArguments {
-    // -- Getters
-    fn get_maven_arg(&self) -> bool {
-        self.maven
-    }
-
-    fn get_gradle_arg(&self) -> bool {
-        self.gradle
-    }
-
-    fn get_all_build_tools_arg(&self) -> bool {
-        self.all_tools
-    }
+    // TODO
 }
 
 /// The ProxyArguments type, represents the "--set-http-proxy", "--set-https-proxy" and "--set-proxy" arguments.
@@ -132,17 +67,9 @@ pub struct ProxyArguments {
 }
 
 impl ProxyArguments {
-    // -- Getters
-    fn get_http_proxy_arg(&self) -> &Option<String> {
-        &self.http_proxy
-    }
-
-    fn get_https_proxy_arg(&self) -> &Option<String> {
-        &self.https_proxy
-    }
-
-    fn get_all_proxy_arg(&self) -> &Option<String> {
-        &self.all_proxy
+    /// Tests whether any proxy argument had been entered
+    pub fn proxy_argument_is_present(&self) -> bool {
+        return self.http_proxy.is_some() || self.https_proxy.is_some() || self.all_proxy.is_some()
     }
 }
 
@@ -189,26 +116,6 @@ pub struct ManageSettingsArguments {
 }
 
 impl ManageSettingsArguments {
-    // -- Getters
-    fn get_unset_settings_arg(&self) -> &Vec<String> {
-        &self.unset_settings
-    }
-
-    fn get_save_current_settings_arg(&self) -> &Option<String> {
-        &self.save_current_settings
-    }
-
-    fn get_delete_settings_arg(&self) -> &Option<String> {
-        &self.delete_settings
-    }
-
-    fn get_restore_settings_arg(&self) -> &Option<String> {
-        &self.restore_settings
-    }
-
-
-    fn get_display_settings_arg(&self) -> &Option<String> {
-        &self.display_settings
-    }
+    // TODO
 }
 

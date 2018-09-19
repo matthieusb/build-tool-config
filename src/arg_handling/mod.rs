@@ -1,5 +1,6 @@
 use model::arguments::Arguments;
 use model::arguments::BuildToolArguments;
+use model::arguments::ProxyArguments;
 use model::enums::BuildTool;
 
 use simple_error::SimpleError;
@@ -15,15 +16,24 @@ pub fn handle_arguments(arguments: Arguments) {
     match arguments {
         Arguments { build_tool_arguments: bta_value, proxy_arguments: pa_value, repository_arguments: ra_value, manage_settings_arguments: msa_value} => {
             match build_tool_arguments_to_enumeration(bta_value) {
-                Ok(returned_value) => print!("Yay"),
-                Err(returned_error) => print!("{}", returned_error)
+                Ok(build_tool_chosen) => {
+                    if pa_value.proxy_argument_is_present() {
+                        handle_proxy_arguments_behavior(pa_value);
+                    }
+
+                    // TODO Add other arguments
+                },
+                Err(build_tool_chosen_error) => print!("{}", build_tool_chosen_error)
             }
-
-            
         },
-    }
+    }   
+}
 
-    
+// TODO See if we actually return a Result or if it is not needed
+pub fn handle_proxy_arguments_behavior(proxy_arguments: ProxyArguments) {
+    match (proxy_arguments.all_proxy,  {
+        ProxyArguments
+    }
 }
 
 /// Determines the Enum value of the chosen build tool
@@ -35,11 +45,6 @@ pub fn build_tool_arguments_to_enumeration (build_tool_arguments: BuildToolArgum
         _ => Err(SimpleError::new("cannot do foo"))
     }
 }
-
-
-
-
-
 
 /*
 Example without any arguments:

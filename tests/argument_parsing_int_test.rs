@@ -14,7 +14,7 @@ mod cli_integration_test {
     // * This could be used to do real integration tests on this app
     // * ALSO You can change the current directory used by the app
 
-    // TODO Split theses integration tests
+    // TODO Split theses integration tests inside a dedicated folder
 
     // ! TODO Add error where cases where arguments are missing (Do this in a different file)
 
