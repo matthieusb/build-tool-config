@@ -1,31 +1,39 @@
 use model::arguments::Arguments;
 use model::arguments::BuildToolArguments;
+use model::enums::BuildTool;
 
-use model::enums::BUILD_TOOL;
+use simple_error::SimpleError;
+use simple_error::SimpleResult;
 
 /// Mother function for argument handling, calls different other functions according to the data provided.
 /// The arguments instance here is not a reference because we don't want to use it after invoking this function
 pub fn handle_arguments(arguments: Arguments) {
     println!("{:?}", arguments); // ! TODO To remove once features are correctly analyzed
 
+    // ! TODO Use actual error handling with custom errors
+
     match arguments {
         Arguments { build_tool_arguments: bta_value, proxy_arguments: pa_value, repository_arguments: ra_value, manage_settings_arguments: msa_value} => {
-            match bta_value {
-                _ => println!("Pouet")
+            match build_tool_arguments_to_enumeration(bta_value) {
+                Ok(returned_value) => print!("Yay"),
+                Err(returned_error) => print!("{}", returned_error)
             }
 
             
         },
-        
-        _ => println!("These options do not appear to be handled by the application, try again") // ? TODO Maybe write this on the error channrl
     }
 
-    // ! TODO Use actual error handling with exception and all
+    
 }
 
-/// TODO
-pub fn handle_build_tool_arguments (build_tool_arguments: BuildToolArguments) -> Result<BUILD_TOOL, String> {
-    Ok(BUILD_TOOL::MAVEN)
+/// Determines the Enum value of the chosen build tool
+pub fn build_tool_arguments_to_enumeration (build_tool_arguments: BuildToolArguments) -> SimpleResult<BuildTool> {
+    match build_tool_arguments {
+        BuildToolArguments { maven: true, gradle: false, all_tools: false } => Ok(BuildTool::MAVEN),
+        BuildToolArguments { maven: false, gradle: true, all_tools: false } => Ok(BuildTool::GRADLE),
+        BuildToolArguments { maven: false, gradle: false, all_tools: true } => Ok(BuildTool::ALL),
+        _ => Err(SimpleError::new("cannot do foo"))
+    }
 }
 
 

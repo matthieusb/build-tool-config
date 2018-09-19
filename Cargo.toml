@@ -9,3 +9,5 @@ assert_cli = "0.6"
 [dependencies]
 structopt = "0.2"
 xml-rs = "0.8.0"
+
+simple-error = "0.1"

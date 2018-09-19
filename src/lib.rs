@@ -1,5 +1,6 @@
 #[macro_use]
 extern crate structopt;
+extern crate simple_error;
 
 // -- Personel mods
 pub mod model;
