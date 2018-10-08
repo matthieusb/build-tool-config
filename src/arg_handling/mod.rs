@@ -31,9 +31,9 @@ pub fn handle_arguments(arguments: Arguments) {
 
 // TODO See if we actually return a Result or if it is not needed
 pub fn handle_proxy_arguments_behavior(proxy_arguments: ProxyArguments) {
-    match (proxy_arguments.all_proxy,  {
-        ProxyArguments
-    }
+    // match (proxy_arguments.all_proxy,  {
+    //     ProxyArguments
+    // }
 }
 
 /// Determines the Enum value of the chosen build tool
