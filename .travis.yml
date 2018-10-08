@@ -4,3 +4,6 @@ rust:
 script:
   - cargo build --verbose --all
   - cargo test --verbose --all
+
+notifications:
+    slack: grouptah:856VHWH2CULM7SmybAC39jKY
