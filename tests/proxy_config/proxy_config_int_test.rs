@@ -24,6 +24,36 @@ mod proxy_config_cli_integration_test {
             .unwrap();
     }
 
+    /// Test for command "cargo run --bin build_tool_config -- --maven --set-https-proxy http://url:port"
+    #[test]
+    fn calling_btc_maven_https_proxy_argument() {
+        // PREPARE
+        let mut set_maven_proxy_command = get_base_cargo_run_command();
+        set_maven_proxy_command.extend(vec!["--maven", "--set-https-proxy", "http://url:port"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&set_maven_proxy_command[..])
+            .succeeds()
+            .stdout()
+            .contains("Setting maven https proxy to http://url:port")
+            .unwrap();
+    }
+
+    /// Test for command "cargo run --bin build_tool_config -- --maven --set-proxy http://url:port"
+    #[test]
+    fn calling_btc_maven_proxies_argument() {
+        // PREPARE
+        let mut set_all_tools_proxies_command = get_base_cargo_run_command();
+        set_all_tools_proxies_command.extend(vec!["--gradle", "--set-proxy", "http://url:port"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&set_all_tools_proxies_command[..])
+            .succeeds()
+            .stdout()
+            .contains("Setting maven proxies to http://url:port")
+            .unwrap();
+    }
+
     /// Test for command "cargo run --bin build_tool_config -- --gradle --set-http-proxy http://url:port"
     #[test]
     fn calling_btc_gradle_http_proxy_argument() {
@@ -39,16 +69,42 @@ mod proxy_config_cli_integration_test {
             .unwrap();
     }
 
+    /// Test for command "cargo run --bin build_tool_config -- --gradle --set-https-proxy http://url:port"
+    #[test]
+    fn calling_btc_gradle_https_proxy_argument() {
+        // PREPARE
+        let mut set_gradle_proxy_command = get_base_cargo_run_command();
+        set_gradle_proxy_command.extend(vec!["--gradle", "--set-https-proxy", "http://url:port"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&set_gradle_proxy_command[..])
+            .succeeds()
+            .stdout()
+            .contains("Setting gradle https proxy to http://url:port")
+            .unwrap();
+    }
+
+    /// Test for command "cargo run --bin build_tool_config -- --gradle --set-proxy http://url:port"
+    #[test]
+    fn calling_btc_gradle_proxies_argument() {
+        // PREPARE
+        let mut set_all_tools_proxies_command = get_base_cargo_run_command();
+        set_all_tools_proxies_command.extend(vec!["--all-tools", "--set-proxy", "http://url:port"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&set_all_tools_proxies_command[..])
+            .succeeds()
+            .stdout()
+            .contains("Setting gradle proxies to http://url:port")
+            .unwrap();
+    }
+
     /// Test for command "cargo run --bin build_tool_config -- --all-tools --set-http-proxy http://url:port"
     #[test]
     fn calling_btc_all_tools_http_proxy_argument() {
         // PREPARE
         let mut set_all_tools_http_proxy_command = get_base_cargo_run_command();
-        set_all_tools_http_proxy_command.extend(vec![
-            "--all-tools",
-            "--set-http-proxy",
-            "http://url:port",
-        ]);
+        set_all_tools_http_proxy_command.extend(vec!["--all-tools", "--set-http-proxy", "http://url:port"]);
 
         // EXECUTE/ASSERT
         assert_cli::Assert::command(&set_all_tools_http_proxy_command[..])
