@@ -10,7 +10,6 @@ mod manage_config_cli_integration_test {
     // ------- SAVE/DELETE/RESTORE/DISPLAY CONFIGURATIONS
     // ------------------------------------------------------
 
-    /// Test for command "cargo run --bin build_tool_config -- --save-current-settings config_name"
     #[test]
     fn calling_btc_save_configuration() {
         // PREPARE
@@ -24,7 +23,6 @@ mod manage_config_cli_integration_test {
         .unwrap();
     }
 
-    /// Test for command "cargo run --bin build_tool_config -- --delete-settings config_name"
     #[test]
     fn calling_btc_delete_configuration() {
         // PREPARE
@@ -38,7 +36,6 @@ mod manage_config_cli_integration_test {
         .unwrap();
     }
 
-    /// Test for command "cargo run --bin build_tool_config -- --restore-settings config_name"
     #[test]
     fn calling_btc_restore_configuration() {
         // PREPARE
@@ -52,7 +49,6 @@ mod manage_config_cli_integration_test {
         .unwrap();
     }
 
-    /// Test for command "cargo run --bin build_tool_config -- --list-settings current"
     #[test]
     fn calling_btc_display_current_configuration() {
         // PREPARE

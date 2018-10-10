@@ -21,7 +21,6 @@ mod general_cli_integration_test {
         assert_cli::Assert::main_binary().succeeds().unwrap();
     }
 
-    /// Test for command "cargo run --bin build_tool_config -- -h"
     #[test]
     fn calling_btc_help_argument_displays_help() {
         // PREPARE
@@ -44,7 +43,6 @@ mod general_cli_integration_test {
     // ------- UNSET SETTINGS
     // ------------------------------------------------------
 
-    /// Test for command "cargo run --bin build_tool_config -- --all-tools --unset-settings all"
     #[test]
     fn calling_btc_unset_all_settings_all_tools() {
         // PREPARE
@@ -60,7 +58,6 @@ mod general_cli_integration_test {
     }
 
     // TODO See where to put this test
-    /// Test for command "cargo run --bin build_tool_config -- --all-tools --unset-settings http-proxy repository"
     #[test]
     fn calling_btc_unset_http_proxy_and_repository_settings_all_tools() {
         // PREPARE

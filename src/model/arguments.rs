@@ -44,10 +44,6 @@ pub struct BuildToolArguments {
     pub all_tools: bool
 }
 
-impl BuildToolArguments {
-    // TODO If necessary
-}
-
 /// The ProxyArguments type, represents the "--set-http-proxy", "--set-https-proxy" and "--set-proxy" arguments.
 /// These arguments are used to choose which proxy to set.
 #[derive(StructOpt, Debug)]
