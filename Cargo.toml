@@ -1,8 +1,13 @@
 [package]
-name = "build-tool-config"
+name = "build_tool_config"
 version = "0.1.0"
-authors = ["matthieusb <sauboua.beneluz.matthieu@gmail.com>"]
+authors = ["matthieusb <>"]
+
+[dev-dependencies]
+assert_cli = "0.6"
 
 [dependencies]
-clap = "2.32.0"
+structopt = "0.2"
 xml-rs = "0.8.0"
+
+simple-error = "0.1"

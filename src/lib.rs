@@ -1,7 +1,12 @@
-#[cfg(test)]
-mod tests {
-    #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
-    }
-}
+#[macro_use]
+extern crate structopt;
+extern crate simple_error;
+
+// -- Personel mods
+pub mod model;
+
+pub mod arg_handling;
+
+pub mod file_manager;
+
+pub mod save_manager;
