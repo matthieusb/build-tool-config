@@ -32,9 +32,9 @@ pub fn handle_arguments(arguments: Arguments) {
         Arguments { build_tool_arguments: bta_value, proxy_arguments: pa_value, repository_arguments: ra_value, manage_settings_arguments: msa_value} => {
             match build_tool_arguments_to_enumeration(bta_value) {
                 Ok(build_tool_chosen) => {
-                    // * Maybe add a first step check to avoid any "too many arguments problem"
+                    // * FIXME Maybe add a first step check to avoid any "too many arguments problem", so that we don't have to handle those afterwards
                     proxy_arg_handling::handle_proxy_arguments_behavior(pa_value, &build_tool_chosen);
-                    repository_arg_handling::handle_proxy_arguments_behavior(ra_value, &build_tool_chosen);
+                    repository_arg_handling::handle_repository_arguments_behavior(ra_value, &build_tool_chosen);
                     manage_settings_arg_handling::handle_manage_settings_arguments_behavior(msa_value, &build_tool_chosen);
                 },
                 Err(build_tool_chosen_error) => eprintln!("{}", build_tool_chosen_error)

@@ -11,7 +11,7 @@ mod manage_config_cli_integration_test {
     // ------------------------------------------------------
 
     #[test]
-    fn calling_btc_save_configuration() {
+    fn calling_btc_save_configuration() { // ! TODO Add maven/gradle/all-tools handling
         // PREPARE
         let mut calling_btc_save_current_settings_as_config_name = get_base_cargo_run_command();
         calling_btc_save_current_settings_as_config_name.extend(vec!["--save-current-settings", "config_name"]);
@@ -24,7 +24,7 @@ mod manage_config_cli_integration_test {
     }
 
     #[test]
-    fn calling_btc_delete_configuration() {
+    fn calling_btc_delete_configuration() {// ! TODO Add maven/gradle/all-tools handling
         // PREPARE
         let mut calling_btc_restore_config_name_settings = get_base_cargo_run_command();
         calling_btc_restore_config_name_settings.extend(vec!["--delete-settings", "config_name"]);
@@ -37,7 +37,7 @@ mod manage_config_cli_integration_test {
     }
 
     #[test]
-    fn calling_btc_restore_configuration() {
+    fn calling_btc_restore_configuration() {// ! TODO Add maven/gradle/all-tools handling
         // PREPARE
         let mut calling_btc_restore_config_name_settings = get_base_cargo_run_command();
         calling_btc_restore_config_name_settings.extend(vec!["--restore-settings", "config_name"]);
@@ -50,7 +50,7 @@ mod manage_config_cli_integration_test {
     }
 
     #[test]
-    fn calling_btc_display_current_configuration() {
+    fn calling_btc_display_current_configuration() {// ! TODO Add maven/gradle/all-tools handling
         // PREPARE
         let mut calling_btc_display_current_configuration = get_base_cargo_run_command();
         calling_btc_display_current_configuration.extend(vec!["--list-settings", "current"]);
@@ -64,7 +64,7 @@ mod manage_config_cli_integration_test {
     }
 
     #[test]
-    fn calling_btc_display_saved_configurations() {
+    fn calling_btc_display_saved_configurations() {// ! TODO Add maven/gradle/all-tools handling
         // PREPARE
         let mut callin_btc_display_saved_configurations = get_base_cargo_run_command();
         callin_btc_display_saved_configurations.extend(vec!["--list-settings", "saved"]);
