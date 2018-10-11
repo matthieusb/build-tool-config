@@ -80,10 +80,7 @@ pub struct RepositoryArguments {
 }
 
 impl RepositoryArguments {
-    // -- Getters
-    fn get_repository_arg(&self) -> &Option<String> {
-        &self.repository
-    }
+    // TODO
 }
 
 /// The ManageSettingsArguments type, represents the "--unset-settings", "--save-current-settings", "--restore-settings" and "--list-settings" arguments
@@ -94,17 +91,6 @@ pub struct ManageSettingsArguments {
     #[structopt(name = "settings-to-unset", long = "unset-settings", group = "manage_settings_arguments")]
     /// Unset parameters, possible values: all, http-proxy, https-proxy, all-proxy, repository
     pub unset_settings: Vec<String>,
-
-    #[structopt(name = "settings-save-name", long = "save-current-settings", group = "manage_settings_arguments")]
-    /// Save current configuration to a particular name
-    pub save_current_settings: Option<String>,
-
-    #[structopt(name = "settings-delete-name", long = "delete-settings", group = "manage_settings_arguments")]
-    pub delete_settings: Option<String>,
-
-    #[structopt(name = "settings-to-restore", long = "restore-settings", group = "manage_settings_arguments")]
-    /// Restore pre-stored settings
-    pub restore_settings: Option<String>,
 
     #[structopt(name = "settings-to-display", long = "list-settings", group = "manage_settings_arguments")]
     /// Display all, current or saved settings, possible values; all, current, saved
