@@ -11,49 +11,127 @@ mod manage_config_cli_integration_test {
     // ------------------------------------------------------
 
     #[test]
-    fn calling_btc_save_configuration() { // ! TODO Add maven/gradle/all-tools handling
+    fn calling_btc_save_maven_configuration() {
         // PREPARE
-        let mut calling_btc_save_current_settings_as_config_name = get_base_cargo_run_command();
-        calling_btc_save_current_settings_as_config_name.extend(vec!["--save-current-settings", "config_name"]);
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--maven", "--save-current-settings", "config_name"]);
 
         // EXECUTE/ASSERT
-        assert_cli::Assert::command(&calling_btc_save_current_settings_as_config_name[..])
+        assert_cli::Assert::command(&command[..])
             .succeeds()
-            .stdout().contains("Saving current configuration as 'config_name'")
+            .stdout().contains("Saving current maven configuration as 'config_name'")
         .unwrap();
     }
 
     #[test]
-    fn calling_btc_delete_configuration() {// ! TODO Add maven/gradle/all-tools handling
+    fn calling_btc_save_gradle_configuration() {
         // PREPARE
-        let mut calling_btc_restore_config_name_settings = get_base_cargo_run_command();
-        calling_btc_restore_config_name_settings.extend(vec!["--delete-settings", "config_name"]);
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--gradle", "--save-current-settings", "config_name"]);
 
         // EXECUTE/ASSERT
-        assert_cli::Assert::command(&calling_btc_restore_config_name_settings[..])
+        assert_cli::Assert::command(&command[..])
             .succeeds()
-            .stdout().contains("Delete 'config_name' configuration")
+            .stdout().contains("Saving current gradle configuration as 'config_name'")
         .unwrap();
     }
 
     #[test]
-    fn calling_btc_restore_configuration() {// ! TODO Add maven/gradle/all-tools handling
+    fn calling_btc_save_all_configuration() {
         // PREPARE
-        let mut calling_btc_restore_config_name_settings = get_base_cargo_run_command();
-        calling_btc_restore_config_name_settings.extend(vec!["--restore-settings", "config_name"]);
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--all-tools", "--save-current-settings", "config_name"]);
 
         // EXECUTE/ASSERT
-        assert_cli::Assert::command(&calling_btc_restore_config_name_settings[..])
+        assert_cli::Assert::command(&command[..])
             .succeeds()
-            .stdout().contains("Restoring current configuration to 'config_name'")
+            .stdout().contains("Saving all configurations for current tools as 'config_name'")
+        .unwrap();
+    }
+
+    #[test]
+    fn calling_btc_delete_maven_configuration() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--maven", "--delete-settings", "config_name"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout().contains("Delete 'config_name' configuration for maven")
+        .unwrap();
+    }
+
+    #[test]
+    fn calling_btc_delete_gradle_configuration() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--gradle", "--delete-settings", "config_name"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout().contains("Delete 'config_name' configuration for gradle")
+        .unwrap();
+    }
+
+    #[test]
+    fn calling_btc_delete_all_configuration() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--all-tools", "--delete-settings", "config_name"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout().contains("Delete 'config_name' configuration for all tools")
+        .unwrap();
+    }
+
+    #[test]
+    fn calling_btc_restore_maven_configuration() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--maven", "--restore-settings", "config_name"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout().contains("Restoring current maven configuration to 'config_name'")
+        .unwrap();
+    }
+
+    #[test]
+    fn calling_btc_restore_gradle_configuration() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--gradle", "--restore-settings", "config_name"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout().contains("Restoring current gradle configuration to 'config_name'")
+        .unwrap();
+    }
+
+    #[test]
+    fn calling_btc_restore_all_tools_configuration() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--all-tools", "--restore-settings", "config_name"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout().contains("Restoring current all tools configuration to 'config_name'")
         .unwrap();
     }
 
     #[test]
     fn calling_btc_display_current_configuration() {// ! TODO Add maven/gradle/all-tools handling
         // PREPARE
-        let mut calling_btc_display_current_configuration = get_base_cargo_run_command();
-        calling_btc_display_current_configuration.extend(vec!["--list-settings", "current"]);
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--list-settings", "current"]);
 
         // EXECUTE/ASSERT
         // ! TODO After display output has been decided
@@ -66,8 +144,8 @@ mod manage_config_cli_integration_test {
     #[test]
     fn calling_btc_display_saved_configurations() {// ! TODO Add maven/gradle/all-tools handling
         // PREPARE
-        let mut callin_btc_display_saved_configurations = get_base_cargo_run_command();
-        callin_btc_display_saved_configurations.extend(vec!["--list-settings", "saved"]);
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--list-settings", "saved"]);
 
         // EXECUTE/ASSERT
         // ! TODO After display output has been decided

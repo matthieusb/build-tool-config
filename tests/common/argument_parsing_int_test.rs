@@ -57,7 +57,7 @@ mod general_cli_integration_test {
             .unwrap();
     }
 
-    // TODO See where to put this test
+    
     #[test]
     fn calling_btc_unset_http_proxy_and_repository_settings_all_tools() {
         // PREPARE
@@ -73,6 +73,8 @@ mod general_cli_integration_test {
             .stdout().contains("settings for all tools")
             .unwrap();
     }
+
+    // ! TODO Add more test cases like that, with several arguments
 
 
 }

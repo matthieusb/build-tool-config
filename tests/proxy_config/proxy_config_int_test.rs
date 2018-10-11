@@ -186,6 +186,20 @@ mod proxy_config_cli_integration_test {
     }
 
     #[test]
+    fn calling_btc_unset_all_settings_maven() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--maven", "--unset-settings", "all"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout()
+            .contains("Unsetting all settings for maven")
+            .unwrap();
+    }
+
+    #[test]
     fn calling_btc_unset_http_proxy_settings_gradle() {
         // PREPARE
         let mut command = get_base_cargo_run_command();
@@ -228,6 +242,20 @@ mod proxy_config_cli_integration_test {
     }
 
     #[test]
+    fn calling_btc_unset_all_settings_gradle() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--gradle", "--unset-settings", "all"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout()
+            .contains("Unsetting all settings for gradle")
+            .unwrap();
+    }
+
+    #[test]
     fn calling_btc_unset_http_proxy_settings_all_tools() {
         // PREPARE
         let mut command = get_base_cargo_run_command();
@@ -266,6 +294,20 @@ mod proxy_config_cli_integration_test {
             .succeeds()
             .stdout()
             .contains("Unsetting all proxy settings for all tools")
+            .unwrap();
+    }
+
+    #[test]
+    fn calling_btc_unset_all_settings_all_tools() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--all-tools", "--unset-settings", "all"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout()
+            .contains("Unsetting all settings for all tools")
             .unwrap();
     }
 }
