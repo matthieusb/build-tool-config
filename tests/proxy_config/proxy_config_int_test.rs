@@ -153,7 +153,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting http proxy settings for maven")
+            .contains("Unsetting following settings for maven: http-proxy")
             .unwrap();
     }
 
@@ -167,7 +167,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting https proxy settings for maven")
+            .contains("Unsetting following settings for maven: https-proxy")
             .unwrap();
     }
 
@@ -181,7 +181,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting all proxy settings for maven")
+            .contains("Unsetting following settings for maven: all-proxy")
             .unwrap();
     }
 
@@ -195,7 +195,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting all settings for maven")
+            .contains("Unsetting following settings for maven: all")
             .unwrap();
     }
 
@@ -209,7 +209,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting http proxy settings for gradle")
+            .contains("Unsetting following settings for gradle: http-proxy")
             .unwrap();
     }
 
@@ -223,7 +223,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting https proxy settings for gradle")
+            .contains("Unsetting following settings for gradle: https-proxy")
             .unwrap();
     }
 
@@ -237,7 +237,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting all proxy settings for gradle")
+            .contains("Unsetting following settings for gradle: all-proxy")
             .unwrap();
     }
 
@@ -251,7 +251,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting all settings for gradle")
+            .contains("Unsetting following settings for gradle: all")
             .unwrap();
     }
 
@@ -265,7 +265,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting http proxy settings for all tools")
+            .contains("Unsetting following settings for all tools: http-proxy")
             .unwrap();
     }
 
@@ -279,7 +279,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting https proxy settings for all tools")
+            .contains("Unsetting following settings for all tools: https-proxy")
             .unwrap();
     }
 
@@ -293,7 +293,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting all proxy settings for all tools")
+            .contains("Unsetting following settings for all tools: all-proxy")
             .unwrap();
     }
 
@@ -307,7 +307,7 @@ mod proxy_config_cli_integration_test {
         assert_cli::Assert::command(&command[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting all settings for all tools")
+            .contains("Unsetting following settings for all tools: all")
             .unwrap();
     }
 }

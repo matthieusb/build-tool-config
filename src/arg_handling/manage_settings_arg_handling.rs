@@ -17,7 +17,6 @@ pub fn handle_manage_settings_arguments_behavior(manage_settings_arguments: Mana
     }
 }
 
-/// * TODO Documentation
 fn handle_unset_settings_arguments_behavior(unset_settings_value: Vec<String>, build_tool_chosen: &BuildTool) {
     match *build_tool_chosen {
         MAVEN => handle_unset_maven_settings_arguments_behavior(unset_settings_value),
@@ -27,15 +26,18 @@ fn handle_unset_settings_arguments_behavior(unset_settings_value: Vec<String>, b
 }
 
 fn handle_unset_maven_settings_arguments_behavior(unset_settings_value: Vec<String>) {
-    // Valeurs possibles all, http-proxy, https-proxy, all-proxy, repository
+    let unset_settings_joined = unset_settings_value.join(" ");
+    println!("Unsetting following settings for maven: {}", unset_settings_joined);
 }
 
 fn handle_unset_gradle_settings_arguments_behavior(unset_settings_value: Vec<String>) {
-    // Valeurs possibles all, http-proxy, https-proxy, all-proxy, repository
+    let unset_settings_joined = unset_settings_value.join(" ");
+    println!("Unsetting following settings for gradle: {}", unset_settings_joined);
 }
 
 fn handle_unset_all_tools_settings_arguments_behavior(unset_settings_value: Vec<String>) {
-    // Valeurs possibles all, http-proxy, https-proxy, all-proxy, repository
+    let unset_settings_joined = unset_settings_value.join(" ");
+    println!("Unsetting following settings for all tools: {}", unset_settings_joined);
 }
 
 fn handle_save_current_settings_arguments_behavior(save_current_settings_value: String, build_tool_chosen: &BuildTool) {

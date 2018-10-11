@@ -53,10 +53,9 @@ mod general_cli_integration_test {
         assert_cli::Assert::command(&calling_btc_all_tools_unset_all_settings_argument[..])
             .succeeds()
             .stdout()
-            .contains("Unsetting all settings for all tools")
+            .contains("Unsetting following settings for all tools: all")
             .unwrap();
     }
-
     
     #[test]
     fn calling_btc_unset_http_proxy_and_repository_settings_all_tools() {
@@ -67,10 +66,8 @@ mod general_cli_integration_test {
         // EXECUTE/ASSERT
         assert_cli::Assert::command(&calling_btc_all_tools_unset_http_proxy_and_repository_settings_argument[..])
             .succeeds()
-            .stdout().contains("Unsetting")
-            .stdout().contains("http-proxy")
-            .stdout().contains("repository")
-            .stdout().contains("settings for all tools")
+            .stdout()
+            .contains("Unsetting following settings for all tools: http-proxy repository")
             .unwrap();
     }
 
