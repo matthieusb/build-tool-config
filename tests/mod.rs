@@ -1,5 +1,8 @@
 extern crate assert_cli;
 
+#[macro_use]
+extern crate indoc;
+
 // Sub modules
 pub mod common;
 

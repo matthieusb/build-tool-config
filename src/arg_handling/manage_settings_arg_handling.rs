@@ -37,5 +37,9 @@ fn handle_unset_all_tools_settings_arguments_behavior(unset_settings_value: Vec<
 }
 
 fn handle_display_settings_arguments_behavior(display_settings_value: String, build_tool_chosen: &BuildTool) {
-    // TODO Once the tests determine the display needed, develop this
+    match *build_tool_chosen {
+        MAVEN => println!("TODO-MAVEN"),
+        GRADLE => println!("TODO-GRAGLE"),
+        ALL => println!("TODO-ALL"),
+    }
 }

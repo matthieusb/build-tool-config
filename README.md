@@ -7,11 +7,13 @@ TODO Add project description
 
 ## Pre-requisites
 
-In order to work with this project you should use a **nightly channel** of rust.
+In order to work with this project you should use a **nightly channel** of rust. This is needed to use the *tarpaulin* cargo package.
+
+
 You might need to install the following dependencies:
 
 ```
-sudo apt install ibssl-dev pkg-config cmake zlib1g-dev
+sudo apt install libssl-dev pkg-config cmake zlib1g-dev
 ```
 
 And then you can install the cargo utilities:
@@ -45,6 +47,12 @@ To launch tests, you should use:
 
 ```
 cargo test -- --test-threads=1
+```
+
+Or to continually test:
+
+```
+cargo watch -x 'test -- --test-threads=1'
 ```
 
 For now *assert_cli* `with_env` crashes so we can't use it.  Maybe with a more complete version of *assert_cmd*,, we'll be able to use it.
