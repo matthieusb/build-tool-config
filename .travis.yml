@@ -1,9 +1,39 @@
 language: rust
+sudo: required
+dist: trusty
+addons:
+    apt:
+        packages:
+            - libssl-dev
+cache: cargo
 rust:
-  - 1.26.2
+  - stable
+  - beta
+  - nightly
+
+matrix:
+  allow_failures:
+    - rust: nightly
+
+before_cache: |
+  if [[ "$TRAVIS_RUST_VERSION" == nightly ]]; then
+    RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
+  fi
+
 script:
-  - cargo build --verbose --all
-  - cargo test --verbose --all
+- cargo clean
+- cargo build --verbose --all
+- cargo test --verbose --all -- --test-threads=1
+
+after_success: |
+  if [[ "$TRAVIS_RUST_VERSION" == nightly ]]; then
+    # Uncomment the following line for coveralls.io
+    cargo tarpaulin --ciserver travis-ci --coveralls $TRAVIS_JOB_ID -- --test-threads=1
+
+    # Uncomment the following two lines create and upload a report for codecov.io
+    # cargo tarpaulin --out Xml
+    # bash <(curl -s https://codecov.io/bash)
+  fi
 
 notifications:
     slack: grouptah:856VHWH2CULM7SmybAC39jKY
