@@ -1,16 +1,25 @@
 # build-tool-config
 
 [![Build Status](https://travis-ci.org/matthieusb/build-tool-config.svg?branch=develop)](https://travis-ci.org/matthieusb/build-tool-config)
+[![Coverage Status](https://coveralls.io/repos/github/matthieusb/build-tool-config/badge.svg?branch=develop)](https://coveralls.io/github/matthieusb/build-tool-config?branch=develop)
 
 TODO Add project description
 
-## Installation 
+## Pre-requisites
 
-Coming eventually
+In order to work with this project you should use a **nightly channel** of rust.
+You might need to install the following dependencies:
 
-## Development
+```
+sudo apt install ibssl-dev pkg-config cmake zlib1g-dev
+```
 
-This project has been built using Rust 1.26.2
+And then you can install the cargo utilities:
+
+```
+cargo install cargo-watch
+RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
+```
 
 ## Building the project
 
@@ -20,18 +29,34 @@ To build it classically :
 cargo build
 ```
 
-You can also install the following dependencies:
+To build continually:
 
 ```bash
-cargo install cargo-watch
+cargo watch -x build
 ```
 
-And then to build continually in separate terminals or launch tests:
+## Testing the project
 
-```bash
-cargo watch
-cargo watch -x test
+### Main recommandations
+
+**ATTENTION:** Testing uses environment variables, which are shared resources. So we can't allow the test to run in parallel (for now).
+
+To launch tests, you should use:
+
 ```
+cargo test -- --test-threads=1
+```
+
+For now *assert_cli* `with_env` crashes so we can't use it.  Maybe with a more complete version of *assert_cmd*,, we'll be able to use it.
+
+### Generating coverage reports
+
+Use the following command (This will clean and rebuild the whole project, be careful):
+
+```
+cargo tarpaulin -v - --test-threads=1
+```
+
 
 ## Generating the documentation
 
