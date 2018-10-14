@@ -12,6 +12,9 @@ pub struct Arguments {
     pub proxy_arguments: ProxyArguments,
 
     #[structopt(flatten)]
+    pub no_proxy_arguments: NoProxyArguments,
+
+    #[structopt(flatten)]
     pub repository_arguments: RepositoryArguments,
 
     #[structopt(flatten)]
@@ -67,6 +70,14 @@ impl ProxyArguments {
     pub fn proxy_argument_is_present(&self) -> bool {
         return self.http_proxy.is_some() || self.https_proxy.is_some() || self.all_proxy.is_some()
     }
+}
+
+#[derive(StructOpt, Debug)]
+#[structopt(name = "no_proxy_arguments")]
+pub struct NoProxyArguments {
+    #[structopt(name = "no_proxy", long = "no-proxy", group = "no_proxy_arguments")]
+    /// Configure no proxy hosts
+    pub no_proxy: Vec<String>
 }
 
 /// The RepositoryArguments type, represents the "--set-repository" argument alone.

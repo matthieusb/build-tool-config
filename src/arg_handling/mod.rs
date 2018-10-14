@@ -29,11 +29,11 @@ mod manage_settings_arg_handling;
 /// The arguments instance here is not a reference because we don't want to use it after invoking this function
 pub fn handle_arguments(arguments: Arguments) {
     match arguments {
-        Arguments { build_tool_arguments: bta_value, proxy_arguments: pa_value, repository_arguments: ra_value, manage_settings_arguments: msa_value} => {
+        Arguments { build_tool_arguments: bta_value, proxy_arguments: pa_value, no_proxy_arguments: npa_value, repository_arguments: ra_value, manage_settings_arguments: msa_value} => {
             match build_tool_arguments_to_enumeration(bta_value) {
                 Ok(build_tool_chosen) => {
                     // * FIXME Maybe add a first step check to avoid any "too many arguments problem", so that we don't have to handle those afterwards
-                    proxy_arg_handling::handle_proxy_arguments_behavior(pa_value, &build_tool_chosen);
+                    proxy_arg_handling::handle_proxy_arguments_behavior(pa_value, npa_value, &build_tool_chosen);
                     repository_arg_handling::handle_repository_arguments_behavior(ra_value, &build_tool_chosen);
                     manage_settings_arg_handling::handle_manage_settings_arguments_behavior(msa_value, &build_tool_chosen);
                 },
