@@ -9,6 +9,10 @@ mod proxy_config_cli_integration_test {
     // ------- SET SETTINGS
     // ------------------------------------------------------
 
+    // ! TODO Add more accurate tests on stdout
+
+    // ! TODO Add accurate tests on no_proxy values
+
     #[test]
     fn calling_btc_maven_http_proxy_argument() {
         // PREPARE
@@ -42,6 +46,20 @@ mod proxy_config_cli_integration_test {
         // PREPARE
         let mut command = get_base_cargo_run_command();
         command.extend(vec!["--maven", "--set-proxy", "http://url:port"]);
+
+        // EXECUTE/ASSERT
+        assert_cli::Assert::command(&command[..])
+            .succeeds()
+            .stdout()
+            .contains("Setting maven proxies to http://url:port")
+            .unwrap();
+    }
+
+    #[test]
+    fn calling_btc_maven_proxies_argument_with_no_proxy() {
+        // PREPARE
+        let mut command = get_base_cargo_run_command();
+        command.extend(vec!["--maven", "--set-proxy", "http://url:port", "--no-proxy", "localhost", "*.msb.fr"]);
 
         // EXECUTE/ASSERT
         assert_cli::Assert::command(&command[..])
@@ -111,11 +129,7 @@ mod proxy_config_cli_integration_test {
     fn calling_btc_all_tools_https_proxy_argument() {
         // PREPARE
         let mut command = get_base_cargo_run_command();
-        command.extend(vec![
-            "--all-tools",
-            "--set-https-proxy",
-            "http://url:port",
-        ]);
+        command.extend(vec!["--all-tools","--set-https-proxy", "http://url:port"]);
 
         // EXECUTE/ASSERT
         assert_cli::Assert::command(&command[..])
