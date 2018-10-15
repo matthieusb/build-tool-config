@@ -17,25 +17,25 @@ mod manage_config_cli_integration_test {
     // ! TODO Rewrite Tests using main_binary
 
     #[test]
-    fn calling_btc_maven_display_proxy_configuration() {
+    fn calling_btc_maven_display_proxy_configuration() { // TODO See how we could mock the home_dir() method
         // PREPARE
-        setup_maven_env_variables(String::from("M3"));
-
         let path_to_resources = get_maven_test_resources_path()
             .join("proxy_repository_settings_home");
         let args = ["--maven", "--list-settings", "proxy"];
 
+        setup_maven_env_variables(path_to_resources.to_str().unwrap().to_string());
+
         // EXECUTE/ASSERT
         assert_cli::Assert::main_binary()
-            .with_args(&args)
+            .with_args(&args)   
             .succeeds()
             .stdout().is(indoc!("----------------- MAVEN -----------------
                 ---- Http Proxy Setting ----
                 http-proxy: localhost:3128
-                non http-proxy hosts: localhost|*.msb.info|*.test.fr
                 ---- Https Proxy Setting ----
                 https-proxy: localhost:3128
-                non https-proxy hosts: localhost|*.msb.info|*.test.fr
+                ---- No Proxy Hosts ----
+                no proxy hosts: localhost, *.msb.info, *.test.fr 
             "))
         .unwrap();
 
@@ -44,31 +44,56 @@ mod manage_config_cli_integration_test {
     }
 
     // TODO Add tests for other settings files
-
     #[test]
     fn calling_btc_maven_display_repository_configuration() {// TODO
         // PREPARE
-        let mut command = get_base_cargo_run_command();
-        command.extend(vec!["--maven", "--list-settings", "repository"]);
+        let path_to_resources = get_maven_test_resources_path()
+            .join("proxy_repository_settings_home");
+        let args = ["--maven", "--list-settings", "repository"];
+
+        setup_maven_env_variables(path_to_resources.to_str().unwrap().to_string());
 
         // EXECUTE/ASSERT
-        assert_cli::Assert::command(&command[..])
+        assert_cli::Assert::main_binary()
+            .with_args(&args)   
             .succeeds()
-            .stdout().contains("")
+            .stdout().is(indoc!("----------------- MAVEN -----------------
+                ---- Repository Setting ----
+                repository url: http://host-test.msb.info/nexus/content/groups/public-maven/ 
+            "))
         .unwrap();
+
+        // RESET
+        teardown_env_variables();
     }
 
     #[test]
-    fn calling_btc_maven_display_all_configuration() {// TODO
+    fn calling_btc_maven_display_all_configuration() {// TODO See how we could mock the home_dir() method
         // PREPARE
-        let mut command = get_base_cargo_run_command();
-        command.extend(vec!["--maven", "--list-settings", "all"]);
+        let path_to_resources = get_maven_test_resources_path()
+            .join("proxy_repository_settings_home");
+        let args = ["--maven", "--list-settings", "all"];
+
+        setup_maven_env_variables(path_to_resources.to_str().unwrap().to_string());
 
         // EXECUTE/ASSERT
-        assert_cli::Assert::command(&command[..])
+        assert_cli::Assert::main_binary()
+            .with_args(&args)   
             .succeeds()
-            .stdout().contains("")
+            .stdout().is(indoc!("----------------- MAVEN -----------------
+                ---- Http Proxy Setting ----
+                http-proxy: localhost:3128
+                ---- Https Proxy Setting ----
+                https-proxy: localhost:3128
+                ---- No Proxy Hosts ----
+                no proxy hosts: localhost, *.msb.info, *.test.fr
+                ---- Repository Setting ----
+                repository url: http://host-test.msb.info/nexus/content/groups/public-maven/ 
+            "))
         .unwrap();
+
+        // RESET
+        teardown_env_variables();
     }
 
     // --------------------------

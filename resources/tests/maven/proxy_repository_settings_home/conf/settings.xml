@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <proxies>  
-    <proxy>
+  <proxies> <!-- XmlEvent::StartElement -->
+    <proxy> <!-- XmlEvent::StartElement -->
         <id>http</id>
         <active>true</active>
         <protocol>http</protocol>
         <host>localhost</host>
         <port>3128</port>
         <nonProxyHosts>localhost|*.msb.info|*.test.fr</nonProxyHosts>
-    </proxy>
+    </proxy> <!-- XmlEvent::EndElement -->
     
-    <proxy>
+    <proxy> <!-- XmlEvent::StartElement -->
       <id>https</id>
       <active>true</active>
       <protocol>https</protocol>
       <host>localhost</host>
       <port>3128</port>
       <nonProxyHosts>localhost|*.msb.info|*.test.fr</nonProxyHosts>
-    </proxy>
-  </proxies>
+    </proxy> <!-- XmlEvent::EndElement -->
+  </proxies><!-- XmlEvent::EndElement -->
   
-  <!-- Configuration pour Alice IO -->
+  <!-- Configuration pour Test -->
   <mirrors>
     <mirror>
       <id>nexus-test</id>

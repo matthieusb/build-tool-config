@@ -52,7 +52,7 @@ cargo test -- --test-threads=1
 Or to continually test:
 
 ```
-cargo watch -x 'test -- --test-threads=1'
+cargo watch -x "test -- --test-threads=1"
 ```
 
 For now *assert_cli* `with_env` crashes so we can't use it.  Maybe with a more complete version of *assert_cmd*,, we'll be able to use it.

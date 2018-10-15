@@ -49,7 +49,7 @@ fn build_tool_arguments_to_enumeration (build_tool_arguments: BuildToolArguments
         BuildToolArguments { maven: true, gradle: false, all_tools: false } => Ok(BuildTool::MAVEN),
         BuildToolArguments { maven: false, gradle: true, all_tools: false } => Ok(BuildTool::GRADLE),
         BuildToolArguments { maven: false, gradle: false, all_tools: true } => Ok(BuildTool::ALL),
-        _ => Err(SimpleError::new("cannot do foo"))
+        _ => Err(SimpleError::new("Can't find a correct build tool mentioned in the command line"))
     }
 }
 

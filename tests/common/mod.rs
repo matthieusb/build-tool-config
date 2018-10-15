@@ -27,7 +27,6 @@ pub fn get_test_resources_path() -> std::path::PathBuf {
         .join("tests")
 }
 
-
 // ----------------------------------
 // -------- ENV VARIABLES
 // ----------------------------------

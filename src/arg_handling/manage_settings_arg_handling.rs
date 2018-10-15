@@ -1,9 +1,11 @@
 /// This file contains argument handling for managing setting arguments
 
 use model::arguments::ManageSettingsArguments;
-
 use model::enums::BuildTool;
 use model::enums::BuildTool::*;
+use model::settings::SettingsView;
+
+use file_manager::*;
 
 pub fn handle_manage_settings_arguments_behavior(manage_settings_arguments: ManageSettingsArguments, build_tool_chosen: &BuildTool) {
     match (manage_settings_arguments.unset_settings.as_slice(), manage_settings_arguments.display_settings) {
@@ -37,8 +39,14 @@ fn handle_unset_all_tools_settings_arguments_behavior(unset_settings_value: Vec<
 }
 
 fn handle_display_settings_arguments_behavior(display_settings_value: String, build_tool_chosen: &BuildTool) {
+
+    // * TODO Maybe the condition over build tool_chosen should happen afterwards, in the file_manager
+
     match *build_tool_chosen {
-        MAVEN => println!("TODO-MAVEN"),
+        MAVEN => {
+            let build_tool_settings_to_display = get_maven_settings_from_home_config(); // TODO Add patern matching or return result once working
+            build_tool_settings_to_display.unwrap().display_settings(display_settings_value, build_tool_chosen)
+        }
         GRADLE => println!("TODO-GRAGLE"),
         ALL => println!("TODO-ALL"),
     }
