@@ -5,7 +5,6 @@ mod manage_config_cli_integration_test {
     use super::*;
     use assert_cli;
     
-
     // ------------------------------------------------------
     // ------- DISPLAY CONFIGURATIONS
     // ------------------------------------------------------
@@ -14,7 +13,7 @@ mod manage_config_cli_integration_test {
     // ------- MAVEN
     // --------------------------
 
-    // TODO See how we could mock the home_dir() method
+    // TODO See how we could mock the home_dir() method : https://github.com/DavidDeSimone/mock_derive
 
     #[test]
     fn calling_btc_maven_display_proxy_complete_config_file() { // TODO See how we could mock the home_dir() method
