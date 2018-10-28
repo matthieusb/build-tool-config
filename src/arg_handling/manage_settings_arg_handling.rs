@@ -44,7 +44,8 @@ fn handle_display_settings_arguments_behavior(display_settings_value: String, bu
 
     match *build_tool_chosen {
         MAVEN => {
-            let build_tool_settings_to_display = get_maven_settings_from_home_config(); // TODO Add patern matching or return result once working
+            
+            let build_tool_settings_to_display = get_maven_settings_from_home_config();
             build_tool_settings_to_display.unwrap().display_settings(display_settings_value, build_tool_chosen)
         }
         GRADLE => println!("TODO-GRAGLE"),
