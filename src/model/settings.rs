@@ -1,5 +1,8 @@
 /// Contains settings models to store build tool settings data and behaviors
 
+use std::io::Write;
+use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
+
 use model::enums::BuildTool;
 use model::enums::BuildTool::*;
 
@@ -40,11 +43,16 @@ pub trait SettingsView {
 
 impl SettingsView for BuildToolSettings {
     fn display_settings(&self, display_chosen: String, build_tool: &BuildTool) {
+        let mut stdout = StandardStream::stdout(ColorChoice::Always);
+        stdout.set_color(ColorSpec::new().set_fg(Some(Color::Green))).unwrap();
+        
         match *build_tool {
             MAVEN => println!("----------------- MAVEN -----------------"),
             GRADLE => println!("----------------- GRADLE -----------------"),
             ALL => println!("----------------- ALL TOOLS -----------------"),
         }
+
+        stdout.set_color(ColorSpec::new().set_fg(Some(Color::White))).unwrap();
 
         match display_chosen.as_ref() { // ? FIXME There might be a better way to do this
             "all" => {        
@@ -60,7 +68,7 @@ impl SettingsView for BuildToolSettings {
                 self.display_repository_settings();
             },
             _ => {}
-        }
+        }  
     }
 
     fn display_proxy_settings(&self) {

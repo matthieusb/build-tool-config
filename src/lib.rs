@@ -6,6 +6,8 @@ extern crate lazy_static;
 
 extern crate simple_error;
 
+extern crate termcolor;
+
 // -- Modules
 pub mod model;
 

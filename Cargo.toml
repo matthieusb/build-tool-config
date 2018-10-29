@@ -13,6 +13,7 @@ xml-rs = "0.8.0"
 dirs = "1.0.4"
 
 indoc = "0.2"
+termcolor = "1"
 
 config = "0.9"
 lazy_static = "1.1.0"
