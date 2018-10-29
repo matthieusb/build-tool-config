@@ -16,6 +16,7 @@ pub fn handle_proxy_arguments_behavior(proxy_arguments: ProxyArguments, no_proxy
 }
 
 fn handle_http_proxy_arguments_behavior(http_proxy_value: String, no_proxy_value: Vec<String>, build_tool_chosen: &BuildTool) {
+    // TODO Use the no_proxy_value
     match *build_tool_chosen {
         MAVEN => println!("Setting maven http proxy to {}", http_proxy_value),
         GRADLE => println!("Setting gradle http proxy to {}", http_proxy_value),
@@ -24,6 +25,7 @@ fn handle_http_proxy_arguments_behavior(http_proxy_value: String, no_proxy_value
 }
 
 fn handle_https_proxy_arguments_behavior(https_proxy_value: String, no_proxy_value: Vec<String>, build_tool_chosen: &BuildTool) {
+    // TODO Use the no_proxy_value
     match *build_tool_chosen {
         MAVEN => println!("Setting maven https proxy to {}", https_proxy_value),
         GRADLE => println!("Setting gradle https proxy to {}", https_proxy_value),
@@ -32,6 +34,7 @@ fn handle_https_proxy_arguments_behavior(https_proxy_value: String, no_proxy_val
 }
 
 fn handle_all_proxy_arguments_behavior(all_proxy_value: String, no_proxy_value: Vec<String>, build_tool_chosen: &BuildTool) {
+    // TODO Use the no_proxy_value
     match *build_tool_chosen {
         MAVEN => println!("Setting maven proxies to {}", all_proxy_value),
         GRADLE => println!("Setting gradle proxies to {}", all_proxy_value),

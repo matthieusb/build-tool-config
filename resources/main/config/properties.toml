@@ -1,0 +1,13 @@
+[config_locations]
+m2 = ".m2"
+conf = "conf"
+settings_xml = "settings.xml"
+
+[env_vars_keys]
+m2_home = "M2_HOME"
+m3_home = "M3_HOME"
+maven_home = "MAVEN_HOME"
+gradle_home = "GRADLE_HOME"
+
+[test_config]
+property_test = "works"

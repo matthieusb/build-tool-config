@@ -90,10 +90,6 @@ pub struct RepositoryArguments {
     pub repository: Option<String>
 }
 
-impl RepositoryArguments {
-    // TODO
-}
-
 /// The ManageSettingsArguments type, represents the "--unset-settings", "--save-current-settings", "--restore-settings" and "--list-settings" arguments
 /// These arguments are used to manage preferences on build tools.
 #[derive(StructOpt, Debug)]
@@ -104,11 +100,7 @@ pub struct ManageSettingsArguments {
     pub unset_settings: Vec<String>,
 
     #[structopt(name = "settings-to-display", long = "list-settings", group = "manage_settings_arguments")]
-    /// Display all, current or saved settings, possible values; all, current, saved
+    /// Display all, proxy or repository settings, possible values; all, proxy, repository
     pub display_settings: Option<String>
-}
-
-impl ManageSettingsArguments {
-    // TODO
 }
 
