@@ -19,7 +19,7 @@ use utils::properties_utils::get_property;
 use utils::file_utils::get_file_if_exists;
 
 
-/// * TODO Documentation
+/// Get BuildToolSettings from the maven local configuration
 pub fn get_maven_settings_from_home_config() -> SimpleResult<BuildToolSettings> {
     match get_maven_home_config_file_path() {
         Ok(maven_home_path) => {
@@ -29,7 +29,7 @@ pub fn get_maven_settings_from_home_config() -> SimpleResult<BuildToolSettings> 
     }
 }
 
-/// * TODO Documentation
+/// Calls all the methods to extract all settings from a found maven configuration file
 fn extract_build_tool_settings_from_maven_settings_file(maven_home_path: PathBuf) -> BuildToolSettings {
     let http_proxy = extract_proxy_settings(get_parser_from_maven_home_path(&maven_home_path).unwrap(), "http");
     let https_proxy = extract_proxy_settings(get_parser_from_maven_home_path(&maven_home_path).unwrap(), "https");
@@ -39,6 +39,7 @@ fn extract_build_tool_settings_from_maven_settings_file(maven_home_path: PathBuf
     BuildToolSettings::new(http_proxy, https_proxy, no_proxy, repository)
 }
 
+/// Parse XML to extract no proxy hosts
 fn extract_no_proxy_hosts(parser: EventReader<std::fs::File>) -> Vec<String> {
     let mut no_proxy: Vec<String> = Vec::new();
 

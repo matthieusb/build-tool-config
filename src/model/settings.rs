@@ -3,21 +3,10 @@
 use model::enums::BuildTool;
 use model::enums::BuildTool::*;
 
-
-pub trait SettingsView {
-    /// * TODO Documentation
-    fn display_settings(&self, display_chosen: String, build_tool: &BuildTool);
-
-    /// * TODO Documentation
-    fn display_proxy_settings(&self);
-
-    /// * TODO Documentation
-    fn display_no_proxy_settings(&self);
-
-    /// * TODO Documentation
-    fn display_repository_settings(&self);
-}
-
+/// Structure that holds build tool settings.
+/// * TODO Some features are missing here (Argument handling shall be changed too):
+/// * - http/https proxy no proxy hosts distinction (Maybe use a tuple)
+/// * - Repository pattern feature (Using a HashMap might do the trick)
 pub struct BuildToolSettings {
     http_proxy: Option<String>,
     https_proxy: Option<String>,
@@ -25,11 +14,28 @@ pub struct BuildToolSettings {
     repository: Option<String>
 }
 
-/// * TODO Documentation
 impl BuildToolSettings {
+    /// Instantiates a new BuildToolSettings object
     pub fn new(http: Option<String>, https: Option<String>, no: Vec<String>, repo: Option<String>) -> BuildToolSettings {
         BuildToolSettings { http_proxy: http, https_proxy: https, no_proxy: no, repository: repo }
     }
+}
+
+/// Handles display of Settings
+pub trait SettingsView {
+    /// Displays all settings available
+    fn display_settings(&self, display_chosen: String, build_tool: &BuildTool);
+
+    /// Display only http and https proxy settings
+    fn display_proxy_settings(&self);
+
+    /// Display no proxy hosts settings: does not make the distinction between http and https no proxy hosts
+    /// * FIXME Implement http/https no proxy hosts capability
+    fn display_no_proxy_settings(&self);
+
+    /// Display repository settings: does not use with repository pattern
+    /// * FIXME Implement repository pattern display option
+    fn display_repository_settings(&self);
 }
 
 impl SettingsView for BuildToolSettings {
