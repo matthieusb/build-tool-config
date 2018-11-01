@@ -16,8 +16,10 @@ use simple_error::SimpleError;
 /// assert!(non_existing_file_result.is_err());
 /// ```
 pub fn get_file_if_exists(path_to_settings: PathBuf) -> SimpleResult<PathBuf> {
-    match path_to_settings.exists() {
-        true => Ok(path_to_settings),
-        false => Err(SimpleError::new(format!("Could not find the following file {} ", path_to_settings.to_str().unwrap())))
+
+    if path_to_settings.exists() {
+        Ok(path_to_settings)
+    } else {
+        Err(SimpleError::new(format!("Could not find the following file {} ", path_to_settings.to_str().unwrap())))
     }
 }

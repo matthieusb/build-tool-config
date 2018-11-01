@@ -68,7 +68,7 @@ pub struct ProxyArguments {
 impl ProxyArguments {
     /// Tests whether any proxy argument had been entered
     pub fn proxy_argument_is_present(&self) -> bool {
-        return self.http_proxy.is_some() || self.https_proxy.is_some() || self.all_proxy.is_some()
+        self.http_proxy.is_some() || self.https_proxy.is_some() || self.all_proxy.is_some()
     }
 }
 

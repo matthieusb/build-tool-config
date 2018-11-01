@@ -54,13 +54,10 @@ fn extract_no_proxy_hosts(parser: EventReader<std::fs::File>) -> Vec<String> {
             }
             Ok(XmlEvent::Characters(value)) => {
                 if no_proxy.is_empty() {
-                    match current_node_type {
-                        MavenXmlConfigNodeType::NoProxyHosts => {
-                            for s in value.split("|") {
-                                no_proxy.push(s.to_string());
-                            }
+                    if let MavenXmlConfigNodeType::NoProxyHosts = current_node_type {
+                        for s in value.split('|') {
+                            no_proxy.push(s.to_string());
                         }
-                        _ => {}
                     }
                 }
             }
@@ -99,22 +96,19 @@ fn extract_proxy_settings(parser: EventReader<std::fs::File>, proxy_kind: &str) 
                 }
             }
             Ok(XmlEvent::EndElement { name }) => {
-                match name.local_name.as_ref() {
-                    "proxy" => {
-                        if proxy.is_none() {
-                            proxy = match (&protocol, &host, &port) {
-                                (Some(protocol_value), Some(host_value), Some(port_value)) => {
-                                    if protocol_value.as_str() == proxy_kind {
-                                        Some(format!("{}:{}", host_value, port_value))
-                                    } else {
-                                        None
-                                    }
+                if let "proxy" = name.local_name.as_ref() {
+                    if proxy.is_none() {
+                        proxy = match (&protocol, &host, &port) {
+                            (Some(protocol_value), Some(host_value), Some(port_value)) => {
+                                if protocol_value.as_str() == proxy_kind {
+                                    Some(format!("{}:{}", host_value, port_value))
+                                } else {
+                                    None
                                 }
-                                _ => None
                             }
+                            _ => None
                         }
                     }
-                    _ => {}
                 }
             }
             _ => {}
@@ -152,12 +146,10 @@ fn extract_repository_settings(parser: EventReader<std::fs::File>) -> Option<Str
                 }
             }
             Ok(XmlEvent::Characters(value)) => {
-                match current_node_type {
-                    MavenXmlConfigNodeType::MirrorUrl => {
-                        repository = Some(value.clone());
-                    }
-                    _ => {}
-                }
+                if let MavenXmlConfigNodeType::MirrorUrl = current_node_type {
+                    repository = Some(value.clone());
+                } 
+                
             }
             _ => {}
         }
