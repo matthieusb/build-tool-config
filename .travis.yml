@@ -11,6 +11,9 @@ rust:
   - beta
   - nightly
 
+before_script:
+  - rustup component add clippy-preview
+
 matrix:
   allow_failures:
     - rust: nightly
@@ -23,6 +26,7 @@ before_cache: |
 script:
 - cargo clean
 - cargo build --verbose --all
+- cargo clippy
 - cargo test --verbose --all -- --test-threads=1
 
 after_success: |

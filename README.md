@@ -3,7 +3,18 @@
 [![Build Status](https://travis-ci.org/matthieusb/build-tool-config.svg?branch=develop)](https://travis-ci.org/matthieusb/build-tool-config)
 [![Coverage Status](https://coveralls.io/repos/github/matthieusb/build-tool-config/badge.svg?branch=develop)](https://coveralls.io/github/matthieusb/build-tool-config?branch=develop)
 
-TODO Add project description
+This project's intent is to automate your build tools
+
+Table of contents:
+- [build-tool-config](#build-tool-config)
+  * [Pre-requisites](#pre-requisites)
+  * [Building the project](#building-the-project)
+  * [Testing the project](#testing-the-project)
+    + [Main recommandations (+ Linting)](#main-recommandations--linting)
+    + [Generating coverage reports (Linux only)](#generating-coverage-reports-linux-only)
+      - [Using kcov (Local usage)](#using-kcov-local-usage)
+      - [Using tarpaulin (Used for CI generation)](#using-tarpaulin-used-for-ci-generation)
+  * [Generating the documentation](#generating-the-documentation)
 
 ## Pre-requisites
 
@@ -26,6 +37,11 @@ cargo kcov --print-install-kcov-sh | sh
 RUSTFLAGS="--cfg procmacro2_semver_exempt" cargo install cargo-tarpaulin
 ```
 
+Also, to use [cargo clippy](https://github.com/rust-lang-nursery/rust-clippy):
+```
+rustup component add clippy-preview
+```
+
 ## Building the project
 
 To build it classically :
@@ -42,7 +58,7 @@ cargo watch -x build
 
 ## Testing the project
 
-### Main recommandations
+### Main recommandations (+ Linting)
 
 **ATTENTION:** Testing uses environment variables, which are shared resources. So we can't allow the test to run in parallel (for now).
 
@@ -59,6 +75,12 @@ cargo watch -x "test -- --test-threads=1"
 ```
 
 For now *assert_cli* `with_env` crashes so we can't use it.  Maybe with a more complete version of *assert_cmd*,, we'll be able to use it.
+
+To lint the project:
+
+```
+cargo clippy
+```
 
 ### Generating coverage reports (Linux only)
 
