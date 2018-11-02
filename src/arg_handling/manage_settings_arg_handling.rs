@@ -9,8 +9,12 @@ use file_manager::maven_manager::*;
 
 pub fn handle_manage_settings_arguments_behavior(manage_settings_arguments: ManageSettingsArguments, build_tool_chosen: &BuildTool) {
     match (manage_settings_arguments.unset_settings.as_slice(), manage_settings_arguments.display_settings) {
-        (unset_settings_values, None) => handle_unset_settings_arguments_behavior(unset_settings_values.to_vec(), build_tool_chosen),
         ([], Some(display_settings_value)) => handle_display_settings_arguments_behavior(display_settings_value, build_tool_chosen),
+        (unset_settings_values, None) => {
+            if !unset_settings_values.is_empty() {
+                handle_unset_settings_arguments_behavior(unset_settings_values.to_vec(), build_tool_chosen)
+            }
+        },
         (_,_) => {}
     }
 }

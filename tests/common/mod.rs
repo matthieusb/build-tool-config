@@ -45,7 +45,8 @@ pub fn setup_env_variables(maven_home_value: String, gradle_home_value: String) 
 /// Sets up envionment variables for maven testing (M2_HOME and M3_HOME)
 pub fn setup_maven_env_variables(maven_home_value: String) {
     env::set_var("M2_HOME", &maven_home_value);
-    env::set_var("M3_HOME", maven_home_value);
+    env::set_var("M3_HOME", &maven_home_value);
+    env::set_var("MAVEN_HOME", maven_home_value);
 }
 
 /// Sets up envionment variables for gradle testing (GRADLE_HOME)
@@ -63,6 +64,7 @@ pub fn teardown_env_variables() {
 pub fn teardown_maven_env_variables() {
     env::remove_var("M2_HOME");
     env::remove_var("M3_HOME");
+    env::remove_var("MAVEN_HOME");
 }
 
 /// Removes envionment variables for gradle testing (GRADLE_HOME)
