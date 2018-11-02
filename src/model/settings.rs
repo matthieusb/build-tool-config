@@ -1,5 +1,7 @@
 /// Contains settings models to store build tool settings data and behaviors
 
+use std::path::PathBuf;
+
 use model::enums::BuildTool;
 use model::enums::BuildTool::*;
 
@@ -8,6 +10,7 @@ use model::enums::BuildTool::*;
 /// * - http/https proxy no proxy hosts distinction (Maybe use a tuple)
 /// * - Repository pattern feature (Using a HashMap might do the trick)
 pub struct BuildToolSettings {
+    file_path: PathBuf,
     http_proxy: Option<String>,
     https_proxy: Option<String>,
     no_proxy: Vec<String>,
@@ -16,8 +19,8 @@ pub struct BuildToolSettings {
 
 impl BuildToolSettings {
     /// Instantiates a new BuildToolSettings object
-    pub fn new(http: Option<String>, https: Option<String>, no: Vec<String>, repo: Option<String>) -> BuildToolSettings {
-        BuildToolSettings { http_proxy: http, https_proxy: https, no_proxy: no, repository: repo }
+    pub fn new(file: PathBuf, http: Option<String>, https: Option<String>, no: Vec<String>, repo: Option<String>) -> BuildToolSettings {
+        BuildToolSettings { file_path: file, http_proxy: http, https_proxy: https, no_proxy: no, repository: repo }
     }
 }
 

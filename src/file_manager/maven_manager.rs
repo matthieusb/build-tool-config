@@ -36,7 +36,7 @@ fn extract_build_tool_settings_from_maven_settings_file(maven_home_path: PathBuf
     let repository = extract_repository_settings(get_parser_from_maven_home_path(&maven_home_path).unwrap());
     let no_proxy: Vec<String> = extract_no_proxy_hosts(get_parser_from_maven_home_path(&maven_home_path).unwrap());
     
-    BuildToolSettings::new(http_proxy, https_proxy, no_proxy, repository)
+    BuildToolSettings::new(maven_home_path, http_proxy, https_proxy, no_proxy, repository)
 }
 
 /// Parse XML to extract no proxy hosts
