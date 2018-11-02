@@ -13,10 +13,8 @@ mod manage_config_cli_integration_test {
     // ------- MAVEN
     // --------------------------
 
-    // TODO See how we could mock the home_dir() method : https://github.com/DavidDeSimone/mock_derive
-
     #[test]
-    fn calling_btc_maven_display_proxy_complete_config_file() { // TODO See how we could mock the home_dir() method
+    fn calling_btc_maven_display_proxy_complete_config_file() {
         // PREPARE
         let path_to_resources = get_maven_test_resources_path()
             .join("all_proxy_repository_settings_home");
@@ -43,7 +41,7 @@ mod manage_config_cli_integration_test {
     }
 
     #[test]
-    fn calling_btc_maven_display_repository_complete_config_file() {// TODO
+    fn calling_btc_maven_display_repository_complete_config_file() {
         // PREPARE
         let path_to_resources = get_maven_test_resources_path()
             .join("all_proxy_repository_settings_home");
@@ -95,7 +93,7 @@ mod manage_config_cli_integration_test {
     }
 
     #[test]
-    fn calling_btc_maven_display_all_only_http_proxy_config_file() { // TODO
+    fn calling_btc_maven_display_all_only_http_proxy_config_file() {
         // PREPARE
         let path_to_resources = get_maven_test_resources_path()
             .join("http_proxy_settings_home");
