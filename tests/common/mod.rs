@@ -1,6 +1,8 @@
 use std;
 use std::env;
 
+use std::path::PathBuf;
+
 pub mod argument_parsing_int_test;
 
 /// Method to get cargo run command line base to launch. Imitates a ./ on the generated executable file.
@@ -13,15 +15,19 @@ pub fn get_base_cargo_run_command<'a>() -> std::vec::Vec<&'a str> {
 // -------- PATH
 // ----------------------------------
 
-pub fn get_maven_test_resources_path() -> std::path::PathBuf {
+pub fn get_maven_display_test_resources_path() -> PathBuf {
+        get_maven_test_resources_path().join("display")
+}
+
+pub fn get_maven_test_resources_path() -> PathBuf {
     get_test_resources_path().join("maven")
 }
 
-pub fn get_gradle_test_resources_path() -> std::path::PathBuf {
+pub fn get_gradle_test_resources_path() -> PathBuf {
     get_test_resources_path().join("gradle")
 }
 
-pub fn get_test_resources_path() -> std::path::PathBuf {
+pub fn get_test_resources_path() -> PathBuf {
     std::env::current_dir().unwrap()
         .join("resources")
         .join("tests")

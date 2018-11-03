@@ -16,7 +16,7 @@ mod manage_config_cli_integration_test {
     #[test]
     fn calling_btc_maven_display_proxy_complete_config_file() {
         // PREPARE
-        let path_to_resources = get_maven_test_resources_path()
+        let path_to_resources = get_maven_display_test_resources_path()
             .join("all_proxy_repository_settings_home");
         let args = ["--maven", "--list-settings", "proxy"];
 
@@ -43,7 +43,7 @@ mod manage_config_cli_integration_test {
     #[test]
     fn calling_btc_maven_display_repository_complete_config_file() {
         // PREPARE
-        let path_to_resources = get_maven_test_resources_path()
+        let path_to_resources = get_maven_display_test_resources_path()
             .join("all_proxy_repository_settings_home");
         let args = ["--maven", "--list-settings", "repository"];
 
@@ -66,7 +66,7 @@ mod manage_config_cli_integration_test {
     #[test]
     fn calling_btc_maven_display_all_complete_config_file() {
         // PREPARE
-        let path_to_resources = get_maven_test_resources_path()
+        let path_to_resources = get_maven_display_test_resources_path()
             .join("all_proxy_repository_settings_home");
         let args = ["--maven", "--list-settings", "all"];
 
@@ -95,7 +95,7 @@ mod manage_config_cli_integration_test {
     #[test]
     fn calling_btc_maven_display_all_only_http_proxy_config_file() {
         // PREPARE
-        let path_to_resources = get_maven_test_resources_path()
+        let path_to_resources = get_maven_display_test_resources_path()
             .join("http_proxy_settings_home");
         let args = ["--maven", "--list-settings", "all"];
 
@@ -124,7 +124,7 @@ mod manage_config_cli_integration_test {
     #[test]
     fn calling_btc_maven_display_all_empty_config_file() {
         // PREPARE
-        let path_to_resources = get_maven_test_resources_path()
+        let path_to_resources = get_maven_display_test_resources_path()
             .join("empty_settings_home");
         let args = ["--maven", "--list-settings", "all"];
 
