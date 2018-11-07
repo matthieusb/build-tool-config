@@ -1,6 +1,9 @@
 use common::*;
 
-use common::get_base_cargo_run_command;
+use assert_fs::prelude::*;
+use assert_fs::TempDir;
+
+use predicates::prelude::*;
 
 #[cfg(test)]
 mod repository_config_cli_integration_test {
@@ -19,16 +22,21 @@ mod repository_config_cli_integration_test {
 
     #[test]
     fn calling_btc_maven_repository_argument() {
-        // PREPARE
-        let path_to_resources = get_maven_test_resources_path()
-            .join("all_proxy_repository_settings_home");
+        // PREPARE: setup temp dir to create a new file in it
+        let temp_parent_dir = TempDir::new().unwrap();
+        let path_to_parent_dir = temp_parent_dir.path();
+        let temp_conf_dir = TempDir::new_in(path_to_parent_dir).unwrap(); // This will not work, we need a /conf directory inside our repository folder
+        let path_to_resources = temp_conf_dir.path();
+        
+        println!("Path to temp dir: {:?}", path_to_resources); // ! TODO Remove this
+
         let args = ["--maven", "--set-repository", "http://url:port"];
 
         setup_maven_env_variables(path_to_resources.to_str().unwrap().to_string());
 
         // EXECUTE/ASSERT
         assert_cli::Assert::main_binary()
-            .with_args(&args)   
+            .with_args(&args)
             .succeeds()
             .stdout().is("Setting maven repository to http://url:port")
         .unwrap();
@@ -38,6 +46,8 @@ mod repository_config_cli_integration_test {
         // RESET
         teardown_env_variables();
     }
+
+    // TODO Create test that also create a temp file to test modification rather than pure creatin
 
     // --------------------------
     // ------- GRADLE

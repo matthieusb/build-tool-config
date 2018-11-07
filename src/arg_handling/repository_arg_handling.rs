@@ -19,6 +19,8 @@ pub fn handle_repository_arguments_behavior(repository_arguments: RepositoryArgu
 
 fn handle_maven_repository_setting(repository_value: String) {
     let current_settings = get_maven_settings_from_home_config();
+
+    
     
     println!("Setting maven repository to {}", repository_value); // TODO Move to once done
 }

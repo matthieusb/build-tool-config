@@ -1,4 +1,6 @@
 extern crate assert_cli;
+extern crate assert_fs;
+extern crate predicates;
 
 #[macro_use]
 extern crate indoc;
